@@ -6,6 +6,7 @@ import SectionContainer from './SectionContainer'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
+import NextImage from 'next/image'
 
 const LayoutWrapper = ({ children }) => {
   return (
@@ -15,8 +16,13 @@ const LayoutWrapper = ({ children }) => {
           <div>
             <Link href="/" aria-label="Tailwind CSS Blog">
               <div className="flex items-center justify-between">
-                <div className="mr-3">
-                  <Logo />
+                <div className="mr-3 flex justify-center items-center">
+                  <NextImage
+                    src="/static/images/logo.png"
+                    width={50}
+                    height={50}
+                    className="rounded-full"
+                  />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
                   <div className="hidden h-6 text-2xl font-semibold sm:block">
