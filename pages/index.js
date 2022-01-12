@@ -7,6 +7,8 @@ import formatDate from '@/lib/utils/formatDate'
 
 import NewsletterForm from '@/components/NewsletterForm'
 
+import Image from 'next/image'
+
 const MAX_DISPLAY = 5
 
 export async function getStaticProps() {
@@ -31,18 +33,34 @@ export default function Home({ posts }) {
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
+            const { slug, date, title, summary, tags, images } = frontMatter
             return (
               <li key={slug} className="py-12">
                 <article>
-                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
-                    <dl>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date)}</time>
-                      </dd>
-                    </dl>
+                  <div className="space-y-2 space-x-4 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
+                    <div className="xl:col-span-1 space-x-2 ">
+                      <dl>
+                        <dt className="sr-only"></dt>
+                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400"></dd>
+                      </dl>
+                      <Link href={`/blog/${slug}`} title={title} className="w-full xl:w-auto">
+                        <Image
+                          alt="illustration"
+                          className="rounded object-cover"
+                          src={frontMatter.images[0]}
+                          layout="responsive"
+                          width={640}
+                          height={400}
+                        />
+                      </Link>
+                    </div>
                     <div className="space-y-5 xl:col-span-3">
+                      <dl>
+                        <dt className="sr-only">Published on</dt>
+                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                          <time dateTime={date}>{formatDate(date)}</time>
+                        </dd>
+                      </dl>
                       <div className="space-y-6">
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
