@@ -41,10 +41,11 @@ const Giscus = ({ mapping }) => {
 
   // Reload on theme change
   useEffect(() => {
+    !enableLoadComments && LoadComments()
     const iframe = document.querySelector('iframe.giscus-frame')
     if (!iframe) return
-    LoadComments()
-  }, [LoadComments])
+    enableLoadComments && LoadComments()
+  }, [LoadComments, enableLoadComments])
 
   return (
     <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300">
