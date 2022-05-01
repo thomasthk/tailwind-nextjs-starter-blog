@@ -37,58 +37,57 @@ export default function Home({ posts }) {
             return (
               <li key={slug} className="py-12">
                 <article>
-                  <div className="space-y-2 space-x-4 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
-                    <div className="xl:col-span-1 space-x-2 ">
-                      <dl>
-                        <dt className="sr-only"></dt>
-                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400"></dd>
-                      </dl>
-                      <Link href={`/blog/${slug}`} title={title} className="w-full xl:w-auto">
-                        <Image
-                          alt="illustration"
-                          className="rounded object-cover"
-                          src={frontMatter.images[0]}
-                          layout="responsive"
-                          width={640}
-                          height={400}
-                        />
-                      </Link>
-                    </div>
-                    <div className="space-y-5 xl:col-span-3">
-                      <dl>
-                        <dt className="sr-only">Published on</dt>
-                        <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                          <time dateTime={date}>{formatDate(date)}</time>
-                        </dd>
-                      </dl>
-                      <div className="space-y-6">
-                        <div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <Link
-                              href={`/blog/${slug}`}
-                              className="text-gray-900 dark:text-gray-100"
-                            >
-                              {title}
-                            </Link>
-                          </h2>
-                          <div className="flex flex-wrap">
-                            {tags.map((tag) => (
-                              <Tag key={tag} text={tag} />
-                            ))}
+                  <div className="space-y-2 xl:grid xl:grid-cols-3 xl:space-y-0">
+                    <dl>
+                      <dt className="sr-only"></dt>
+                      <dd className="mb-4 flex flex-row items-center gap-x-3">
+                        <time dateTime={date}>{formatDate(date)}</time>
+                      </dd>
+                    </dl>
+                    <div className="flex flex-col items-center sm:flex-row xl:col-span-3">
+                      <div className="mx-2 my-8 w-full sm:my-0 sm:w-1/3">
+                        <Link href={`/blog/${slug}`}>
+                          <div className="overflow-hidden rounded-xl sm:px-0">
+                            <Image
+                              alt="illustration"
+                              className="rounded object-cover"
+                              src={frontMatter.images[0]}
+                              layout="responsive"
+                              width={640}
+                              height={400}
+                            />
                           </div>
-                        </div>
-                        <div className="prose text-gray-500 max-w-none dark:text-gray-400">
-                          {summary}
-                        </div>
-                      </div>
-                      <div className="text-base font-medium leading-6">
-                        <Link
-                          href={`/blog/${slug}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                          aria-label={`Read "${title}"`}
-                        >
-                          Read more &rarr;
                         </Link>
+                      </div>
+                      <div className="mx-2 w-full sm:w-2/3">
+                        <div>
+                          <div>
+                            <h2 className="text-2xl font-bold">
+                              <Link
+                                href={`/blog/${slug}`}
+                                data-cy="post-title"
+                                className="border-b-2 border-transparent duration-300 hover:border-brand dark:text-gray-50"
+                              >
+                                {title}
+                              </Link>
+                            </h2>
+                            <div className="flex flex-wrap">
+                              {tags.map((tag) => (
+                                <Tag key={tag} text={tag} />
+                              ))}
+                            </div>
+                          </div>
+                          <div className="prose text-gray-500 max-w-none dark:text-gray-400">
+                            {summary}
+                          </div>
+                          <Link
+                            href={`/blog/${slug}`}
+                            aria-label={`Read "${title}"`}
+                            className="border-b-2 border-transparent duration-300 hover:border-brand"
+                          >
+                            Read more &rarr;
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
