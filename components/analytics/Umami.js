@@ -9,7 +9,7 @@ const UmamiScript = () => {
         async
         defer
         data-website-id={siteMetadata.analytics.umamiWebsiteId}
-        src="https://umami-henna.vercel.app/umami.js" // Replace with your umami instance
+        src="https://umami-henna.vercel.app/uma.js" // Replace with your umami instance
       />
     </>
   )
